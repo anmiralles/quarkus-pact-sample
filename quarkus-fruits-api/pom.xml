@@ -12,13 +12,6 @@
         <version>1.0</version>
     </parent>
 
-    <properties>
-        <maven.compiler.release>17</maven.compiler.release>
-        <quarkus.platform.artifact-id>quarkus-bom</quarkus.platform.artifact-id>
-        <quarkus.platform.group-id>io.quarkus.platform</quarkus.platform.group-id>
-        <quarkus.platform.version>2.16.9.Final</quarkus.platform.version>
-    </properties>
-
     <dependencyManagement>
         <dependencies>
             <dependency>
@@ -54,7 +47,7 @@
         </dependency>
         <dependency>
             <groupId>io.quarkus</groupId>
-            <artifactId>quarkus-opentelemetry-exporter-otlp</artifactId>
+            <artifactId>quarkus-opentelemetry</artifactId>
         </dependency>
         <dependency>
             <groupId>io.quarkus</groupId>
@@ -107,7 +100,7 @@
             <plugin>
                 <groupId>io.quarkus</groupId>
                 <artifactId>quarkus-maven-plugin</artifactId>
-                <version>${quarkus.version}</version>
+                <version>${quarkus.platform.version}</version>
                 <executions>
                     <execution>
                         <goals>
