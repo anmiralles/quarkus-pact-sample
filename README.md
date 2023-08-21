@@ -2,25 +2,27 @@
 
 This project uses Quarkus, and shows how to implement contract testing using pact.
 
-## Running a docker PACT server
+## Running a podman PACT server
 
 In order to work locally, we need an instance of a docker PACT server. For that we will execute the 
 following podman commands:
 
 1. First we need to create a podman network to link containers:
 
-```
-podman network create pact_test
+```shell script
+./podman network create pact_test
 ```
 
 2. Provision a postgres database for persisting contract testing data:
-```
-podman run -d --name postgres --net pact_test -p 5432:5432 -e POSTGRES_USER=pact -e POSTGRES_PASSWORD=pact123 -e POSTGRES_DB=pact postgres
+
+```shell script
+./podman run -d --name postgres --net pact_test -p 5432:5432 -e POSTGRES_USER=pact -e POSTGRES_PASSWORD=pact123 -e POSTGRES_DB=pact postgres
 ```
 
 3. Instantiate the pact server:
-```
-podman run -d --name pact-broker --net pact_test -e PACT_BROKER_DATABASE_USERNAME=pact -e PACT_BROKER_DATABASE_PASSWORD=pact123 -e PACT_BROKER_DATABASE_HOST=postgres -e PACT_BROKER_DATABASE_NAME=pact -p 9292:9292 pactfoundation/pact-broker
+
+```shell script
+./podman run -d --name pact-broker --net pact_test -e PACT_BROKER_DATABASE_USERNAME=pact -e PACT_BROKER_DATABASE_PASSWORD=pact123 -e PACT_BROKER_DATABASE_HOST=postgres -e PACT_BROKER_DATABASE_NAME=pact -p 9292:9292 pactfoundation/pact-broker
 ```
 
 We can also execute the following docker-compose file:
