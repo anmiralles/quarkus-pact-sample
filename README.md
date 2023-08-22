@@ -16,8 +16,7 @@ web dashboard for navigating the API. We will run it as podman containers.
 
 Here’s the diagram that illustrates the described architecture.
 
-![Screenshot 2023-08-22 at 16.52.40.png](..%2F..%2F..%2F..%2F..%2F..%2F..%2Fvar%2Ffolders%2Fb1%2Fb6ym3dbs30d7mkqzrn2x20r40000gn%2FT%2FTemporaryItems%2FNSIRD_screencaptureui_qY81Zo%2FScreenshot%202023-08-22%20at%2016.52.40.png)
-
+![Architecture](architecture.png)
 
 ## Running a podman PACT server
 
