@@ -2,6 +2,23 @@
 
 This project uses Quarkus, and shows how to implement contract testing using pact.
 
+In this project we will add a contract tests to the existing architecture of sample Quarkus microservices. 
+There are two sample apps that communicate with each other through HTTP. We use Quarkus declarative REST client 
+to call remote HTTP endpoints. The quarkus-fruits-api app calls the endpoint exposed by the quarkus-fruits-data
+app to get a list of fruits or find a specific one by id.
+
+We will implement some contract tests to verify described interactions. Each contract is signed between 
+two sides of communication: the consumer and the provider. Pact assumes that contract code is generated 
+and published by the consumer side, and then verified by the provider side. 
+It provides a tool for storing and sharing contracts between consumers and providers – Pact Broker. 
+Pact Broker exposes a simple RESTful API for publishing and retrieving contracts, and an embedded 
+web dashboard for navigating the API. We will run it as podman containers. 
+
+Here’s the diagram that illustrates the described architecture.
+
+![Screenshot 2023-08-22 at 16.52.40.png](..%2F..%2F..%2F..%2F..%2F..%2F..%2Fvar%2Ffolders%2Fb1%2Fb6ym3dbs30d7mkqzrn2x20r40000gn%2FT%2FTemporaryItems%2FNSIRD_screencaptureui_qY81Zo%2FScreenshot%202023-08-22%20at%2016.52.40.png)
+
+
 ## Running a podman PACT server
 
 In order to work locally, we need an instance of a docker PACT server. For that we will execute the 
@@ -81,5 +98,7 @@ podman run -d --name db-fruits --net pact_test -e POSTGRES_USER=quarkus_test -e 
 ```
 
 ## Related Guides
+
+Para 
 
 Quarkus guide: https://piotrminkowski.com/2023/05/09/contract-testing-with-quarkus-and-pact/
