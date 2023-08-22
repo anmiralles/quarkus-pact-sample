@@ -11,12 +11,10 @@ public class FruitResourceTests {
 
     @Test
     public void testFindById() {
-        Fruit fruit = new Fruit();
-        fruit.id= 1L;
-        fruit.name = "Cherry";
+        Fruit fruit = new Fruit(1L, "Cherry");
         given()
             .when()
-                .get("/fruits/{id}", 1L)
+                .get("/fruits/1")
             .then()
                 .statusCode(200)
                 .body("id", equalTo(fruit.id.intValue()))

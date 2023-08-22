@@ -10,19 +10,19 @@ following podman commands:
 1. First we need to create a podman network to link containers:
 
 ```shell script
-./podman network create pact_test
+podman network create pact_test
 ```
 
 2. Provision a postgres database for persisting contract testing data:
 
 ```shell script
-./podman run -d --name postgres --net pact_test -p 5432:5432 -e POSTGRES_USER=pact -e POSTGRES_PASSWORD=pact123 -e POSTGRES_DB=pact postgres
+podman run -d --name postgres --net pact_test -p 5432:5432 -e POSTGRES_USER=pact -e POSTGRES_PASSWORD=pact123 -e POSTGRES_DB=pact postgres
 ```
 
 3. Instantiate the pact server:
 
 ```shell script
-./podman run -d --name pact-broker --net pact_test -e PACT_BROKER_DATABASE_USERNAME=pact -e PACT_BROKER_DATABASE_PASSWORD=pact123 -e PACT_BROKER_DATABASE_HOST=postgres -e PACT_BROKER_DATABASE_NAME=pact -p 9292:9292 pactfoundation/pact-broker
+podman run -d --name pact-broker --net pact_test -e PACT_BROKER_DATABASE_USERNAME=pact -e PACT_BROKER_DATABASE_PASSWORD=pact123 -e PACT_BROKER_DATABASE_HOST=postgres -e PACT_BROKER_DATABASE_NAME=pact -p 9292:9292 pactfoundation/pact-broker
 ```
 
 We can also execute the following docker-compose file:
@@ -67,11 +67,12 @@ http://localhost:9292
 You can run your application in dev mode that enables live coding using:
 
 ```shell script
-./podman-compose up -d
+podman-compose up -d
 ```
 
 Before executing our application, we also need to provision a postgres database por persisting fruits data:
-```
+
+```shell script
 podman run -d --name db-fruits --net pact_test -e POSTGRES_USER=quarkus_test -e POSTGRES_PASSWORD=quarkus_test -e POSTGRES_DB=quarkus_test -p 5435:5432 postgres
 ```
 

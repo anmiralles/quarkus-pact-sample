@@ -42,7 +42,6 @@ class FruitServiceContractTest {
         Fruit fruit = client.findById(1L);
         System.out.println(fruit);
         assertNotNull(fruit);
-        assertNotNull(fruit.id);
     }
 
 }

@@ -21,6 +21,7 @@ public class FruitResource {
 
     private static final Logger LOGGER = Logger.getLogger(FruitResource.class.getName());
 
+    @Inject
     @RestClient
     FruitService fruitService;
 
@@ -31,7 +32,7 @@ public class FruitResource {
 
     @GET
     @Path("{id}")
-    public Fruit findById(Long id) {
+    public Fruit findById(@PathParam("id") Long id) {
         Fruit fruit = fruitService.findById(id);
         if (fruit == null) {
             throw new WebApplicationException("Fruit with id of " + id + " does not exist.", 404);
