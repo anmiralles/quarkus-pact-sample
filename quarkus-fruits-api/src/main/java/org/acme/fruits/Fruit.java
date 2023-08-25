@@ -10,7 +10,8 @@ public class Fruit {
     public Fruit() {
     }
 
-    public Fruit(String name) {
+    public Fruit(Long id, String name) {
+        this.id = id;
         this.name = name;
     }
 

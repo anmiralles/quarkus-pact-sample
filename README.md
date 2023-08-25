@@ -98,6 +98,4 @@ podman run -d --name db-fruits --net pact_test -e POSTGRES_USER=quarkus_test -e 
 
 ## Related Guides
 
-Para 
-
 Quarkus guide: https://piotrminkowski.com/2023/05/09/contract-testing-with-quarkus-and-pact/
