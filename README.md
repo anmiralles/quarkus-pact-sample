@@ -16,7 +16,7 @@ web dashboard for navigating the API. We will run it as podman containers.
 
 Here’s the diagram that illustrates the described architecture.
 
-![Architecture](architecture.png)
+<img alt="Architecture" height="400" src="architecture.png" width="600"/>
 
 ## Running a podman PACT server
 
@@ -41,7 +41,7 @@ podman run -d --name postgres --net pact_test -p 5432:5432 -e POSTGRES_USER=pact
 podman run -d --name pact-broker --net pact_test -e PACT_BROKER_DATABASE_USERNAME=pact -e PACT_BROKER_DATABASE_PASSWORD=pact123 -e PACT_BROKER_DATABASE_HOST=postgres -e PACT_BROKER_DATABASE_NAME=pact -p 9292:9292 pactfoundation/pact-broker
 ```
 
-We can also execute the following docker-compose file:
+Alternatively we can also execute the following docker-compose file:
 
 ```
 version: "3.7"
@@ -78,15 +78,25 @@ Once the PACT server is up and running we can check everything is ok, just searc
 http://localhost:9292
 ```
 
-## Running the application in dev mode
+## Running contract tests
 
-You can run your application in dev mode that enables live coding using:
+As we explained before, the consumer part is responsible for publishing the contract, in that way we need to execute:
 
 ```shell script
-podman-compose up -d
+cd quarkus-fruits-api && mvn clean package pact:publish
 ```
 
-Before executing our application, we also need to provision a postgres database por persisting fruits data:
+Once the contract is publish we can inspect it in the web interface: http://localhost:9292
+
+And finally, we only have to move backward to the parent folder and execute:
+
+```shell script
+cd .. && mvn test
+```
+
+## Running application in dev mode
+
+Before executing our application, we also need to provision a postgres database for persisting fruits data:
 
 ```shell script
 podman run -d --name db-fruits --net pact_test -e POSTGRES_USER=quarkus_test -e POSTGRES_PASSWORD=quarkus_test -e POSTGRES_DB=quarkus_test -p 5435:5432 postgres
